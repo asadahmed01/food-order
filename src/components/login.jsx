@@ -19,7 +19,7 @@ class login extends Form {
 
   render() {
     return (
-      <div className="mx-40 pt-10">
+      <div className="ml-20 pt-10">
         <h1 className="font-bold mb-5 text-yellow-800 text-2xl">Login Here</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput("username", "Username")}

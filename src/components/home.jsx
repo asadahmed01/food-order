@@ -1,9 +1,9 @@
-import React, { Component, useContext } from "react";
-import NavBar from "./navBar";
-import OrderButton from "./orderButton";
-import { getAllImages } from "../common/data";
-import { Link } from "react-router-dom";
-import DishDetails from "./dishDetails";
+import React, { useContext } from "react";
+// import NavBar from "./navBar";
+// import OrderButton from "./orderButton";
+// import { getAllImages } from "../common/data";
+// import { Link } from "react-router-dom";
+// import DishDetails from "./dishDetails";
 import Card from "./card";
 import { Context } from "../context";
 

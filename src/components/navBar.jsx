@@ -39,7 +39,7 @@ const NavBar = (props) => {
           </NavLink>
         </li>
         <li className="p-5 flex relative">
-          <span className="absolute top-0">{props.dishes}</span>
+          <span className="bg-yellow-50 absolute top-0">{props.dishes}</span>
           <NavLink to="/cart">
             <Cart items={dishes} />
           </NavLink>

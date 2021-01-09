@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../context";
 
-const Counter = () => {
-  const { count } = useContext(Context);
-  const [dishes, setDishes] = count;
+const Counter = (props) => {
+  // const { count } = useContext(Context);
+  // const [dishes, setDishes] = count;
 
   return (
     <div>
@@ -11,7 +11,7 @@ const Counter = () => {
         <button
           className="bg-yellow-600 text-white 
     font-bold py-2 px-4 rounded mt-5 hover:bg-yellow-700"
-          onClick={() => setDishes(dishes + 1)}
+          onClick={props.onIncrement}
         >
           +
         </button>
@@ -22,15 +22,15 @@ const Counter = () => {
         >
           <span className={getBadgeClasses()}>
             {formatCount()}
-            {dishes}
+            {props.dishCount}
           </span>
         </button>
 
         <button
           className="bg-yellow-600 text-white 
     font-bold py-2 px-4 rounded mt-5 hover:bg-yellow-700"
-          onClick={() => setDishes(dishes - 1)}
-          disabled={dishes === 0 && "true"}
+          disabled={props.dishCount === 0 && "true"}
+          onClick={props.onDecrement}
         >
           -
         </button>

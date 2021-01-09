@@ -8,8 +8,9 @@ import OrderButton from "./orderButton";
 
 const DishDetails = (props) => {
   const { count } = useContext(Context);
-  const [value] = count;
+  let [value, setDishes] = count;
 
+  let inCart = value;
   const dishes = getAllImages();
   let dishId = props.match.params.id;
 
@@ -19,10 +20,19 @@ const DishDetails = (props) => {
   const dish = dishes.filter((d) => d.id === dishId);
   const price = dish[0].price;
 
+  const handleDecrement = () => {
+    setDishes(value - 1);
+  };
+
+  const handleIncrement = () => {
+    setDishes(value + 1);
+  };
+
   const handleAddOrder = () => {
     props.history.push("/");
     if (value !== 0) {
-      toast.success(`${dish[0].title} added to cart`, {
+      inCart = 0;
+      toast.success(`${value} ${dish[0].title} added to cart`, {
         position: "top-center",
         autoClose: 1500,
         hideProgressBar: true,
@@ -56,7 +66,11 @@ const DishDetails = (props) => {
           );
         })}
         <div className="pl-32 flex md:items-center md:ml-20">
-          <Counter />
+          <Counter
+            onIncrement={handleIncrement}
+            dishCount={inCart}
+            onDecrement={handleDecrement}
+          />
         </div>
       </div>
 
