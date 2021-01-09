@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/food-order/static/css/main.333734c2.chunk.css",
-    "main.js": "/food-order/static/js/main.f58bdf4f.chunk.js",
-    "main.js.map": "/food-order/static/js/main.f58bdf4f.chunk.js.map",
+    "main.js": "/food-order/static/js/main.e56c77f0.chunk.js",
+    "main.js.map": "/food-order/static/js/main.e56c77f0.chunk.js.map",
     "runtime-main.js": "/food-order/static/js/runtime-main.4e4b76af.js",
     "runtime-main.js.map": "/food-order/static/js/runtime-main.4e4b76af.js.map",
     "static/css/2.ccc6f86f.chunk.css": "/food-order/static/css/2.ccc6f86f.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.ccc6f86f.chunk.css",
     "static/js/2.2573c3e2.chunk.js",
     "static/css/main.333734c2.chunk.css",
-    "static/js/main.f58bdf4f.chunk.js"
+    "static/js/main.e56c77f0.chunk.js"
   ]
 }
