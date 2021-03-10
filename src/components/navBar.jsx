@@ -5,7 +5,7 @@ import Cart from "./cart";
 import { Context } from "../context";
 import { useSelector } from "react-redux";
 
-const NavBar = (props) => {
+const NavBar = () => {
   const numberInCart = useSelector((state) => state.products);
 
   const { count } = useContext(Context);
