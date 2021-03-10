@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaShoppingCart } from "react-icons/fa";
 import Cart from "./cart";
 import { Context } from "../context";
+import { useSelector } from "react-redux";
 
 const NavBar = (props) => {
+  const numberInCart = useSelector((state) => state.products);
+
   const { count } = useContext(Context);
   const [dishes] = count;
   //console.log(dishes);
@@ -24,7 +27,7 @@ const NavBar = (props) => {
 
       <ul className="hidden md:flex md:flex-row text-yellow-50">
         <li className="p-5">
-          <NavLink to="/dishes" className="p-5 rounded-sm hover:bg-yellow-400">
+          <NavLink to="/" className="p-5 rounded-sm hover:bg-yellow-400">
             Menu
           </NavLink>
         </li>
@@ -38,10 +41,13 @@ const NavBar = (props) => {
             SignUp
           </NavLink>
         </li>
-        <li className="p-5 flex relative">
-          <span className="bg-yellow-50 absolute top-0">{props.dishes}</span>
+        <li className="flex-row p-2 relative">
+          <span className="bg-white text-black w-5 h-5 rounded-full px-1 text-xs font-bold">
+            {numberInCart.length}
+          </span>
+
           <NavLink to="/cart">
-            <Cart items={dishes} />
+            <FaShoppingCart />
           </NavLink>
         </li>
       </ul>

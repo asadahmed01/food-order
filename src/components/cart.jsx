@@ -1,19 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import NavBar from "./navBar";
+import { useSelector } from "react-redux";
 
-class Cart extends Component {
-  render() {
-    console.log(this.props);
-    return (
+function Cart() {
+  const dishes = useSelector((state) => state.products);
+  console.log(dishes.length);
+  return (
+    <div>
       <React.Fragment>
         <div>
-          {this.props.items}
           <FaShoppingCart />
         </div>
       </React.Fragment>
-    );
-  }
+    </div>
+  );
 }
 
 export default Cart;

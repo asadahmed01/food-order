@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-
+import { addToCart } from "../store/cartSlice";
+import configureStore from "../store/configureStore";
+const store = configureStore;
 class OrderButton extends Component {
   render() {
     return (
       <button
         className="bg-yellow-600 text-white 
       font-bold py-2 px-4 rounded mt-5 hover:bg-yellow-700"
-        onClick={this.props.onOrder}
+        onClick={() => store.dispatch(addToCart(this.props.onOrder))}
       >
         {this.props.type}
       </button>

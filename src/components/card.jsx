@@ -15,6 +15,7 @@ class Card extends Component {
                 <div className="border-b border-1 border-gray-100">
                   <img
                     src={item.url}
+                    alt="image"
                     className="w-full h-32 sm:h-48 object-cover"
                   />
                   <div className="m-4 text-center pt-10 ">
@@ -24,7 +25,7 @@ class Card extends Component {
                 </div>
               </Link>
 
-              <OrderButton onOrder={this.props.onOrder} type="Order Now" />
+              <OrderButton onOrder={item} type="Order Now" />
             </div>
           );
         })}

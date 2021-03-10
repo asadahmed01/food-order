@@ -23,7 +23,7 @@ function App() {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/cart" component={Cart} />
-        <Route path="/" exact component={Home} />
+        <Route path="/" component={Home} />
       </Switch>
     </OrderProvider>
   );
