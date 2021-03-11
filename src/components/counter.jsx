@@ -1,10 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../context";
-
+import React from "react";
 const Counter = (props) => {
-  // const { count } = useContext(Context);
-  // const [dishes, setDishes] = count;
-
   return (
     <div>
       <div className="flex items-center">
@@ -29,7 +24,7 @@ const Counter = (props) => {
         <button
           className="bg-yellow-600 text-white 
     font-bold py-2 px-4 rounded mt-5 hover:bg-yellow-700"
-          disabled={props.dishCount === 0 && "true"}
+          disabled={props.dishCount === 0 && true}
           onClick={props.onDecrement}
         >
           -

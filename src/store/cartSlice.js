@@ -26,8 +26,24 @@ const cartSlice = createSlice({
         });
       }
     },
+
+    incrementItem: (products, action) => {
+      return products.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+    },
+
+    decrementItem: (products, action) => {
+      return products.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      );
+    },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, incrementItem, decrementItem } = cartSlice.actions;
 export default cartSlice.reducer;
