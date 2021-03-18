@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import joi from "joi-browser";
 import Input from "./input";
+import { FaSpinner } from "react-icons/fa";
 
 class Form extends Component {
   state = { data: {}, errors: {} };
@@ -50,7 +51,7 @@ class Form extends Component {
     return (
       <button
         disabled={this.validate()}
-        className="px-8 py-2 bg-blue-600 text-blue-50 max-w-max shadow-sm hover:shadow-md rounded-md"
+        className="px-8 py-3 bg-blue-600 text-blue-50 md:w-96 w-full shadow-sm hover:shadow-md rounded-md"
       >
         {label}
       </button>

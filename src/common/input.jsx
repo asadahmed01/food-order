@@ -2,7 +2,7 @@ import React from "react";
 
 const Input = ({ name, label, error, focus, ...rest }) => {
   return (
-    <div className="">
+    <div>
       <label htmlFor={name} className="form-label">
         {label}
       </label>
@@ -10,7 +10,7 @@ const Input = ({ name, label, error, focus, ...rest }) => {
         {...rest}
         name={name}
         autoFocus={focus}
-        className="form-input mt-1 block md:w-72  mb-5 md:pl-10 h-8 border focus:shadow-outline md:p-5 rounded-md font-semibold md:tracking-widest"
+        className="form-input mt-1 block md:w-96 w-full mb-5 md:pl-10 h-12  p-5  rounded-md font-semibold tracking-widest border border-yellow-500 text-2xl"
         id={name}
         aria-describedby="emailHelp"
       />

@@ -14,7 +14,7 @@ const Home = (props) => {
   console.log(images);
   return (
     <div>
-      <main className="bg-gray-100 px-16 py-6">
+      <main className="bg-gray-100 px-16 py-6 min-h-screen">
         <header>
           <h2 className="text-gray-700 text-6xl font-semibold">Menu</h2>
         </header>

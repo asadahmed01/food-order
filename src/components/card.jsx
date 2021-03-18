@@ -5,7 +5,7 @@ import OrderButton from "./orderButton";
 class Card extends Component {
   render() {
     return (
-      <div className="mt-8 grid md:grid-cols-4 md:gap-4 gap-8">
+      <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 md:gap-4 gap-8">
         {/* cards go here */}
 
         {this.props.data.map((item) => {

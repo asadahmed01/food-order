@@ -2,7 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Counter from "./counter";
 import { useDispatch } from "react-redux";
-import { incrementItem, decrementItem } from "../store/cartSlice";
+import { incrementItem, decrementItem, clearCart } from "../store/cartSlice";
+import { Link } from "react-router-dom";
+import { getCurrentUser } from "./services/authServices";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -11,9 +13,10 @@ function Cart() {
     (total, current) => (total += current.price * current.quantity),
     0
   );
-
+  const currentUser = getCurrentUser();
+  console.log(currentUser);
   return (
-    <div>
+    <div className="min-h-screen">
       <React.Fragment>
         <div>
           {dishes.map((dish) => {
@@ -38,6 +41,7 @@ function Cart() {
                   {/* the total price column */}
                   <div className="flex-col self-end border-b mr-5 text-sm md:text-lg">
                     <Counter
+                      id={dish.id}
                       onIncrement={() => {
                         dispatch(incrementItem(dish));
                       }}
@@ -50,7 +54,7 @@ function Cart() {
                       Subtotal: {dish.quantity} x {dish.price} ={" "}
                       <span className="text-red-700 font-semibold">
                         {" "}
-                        ${dish.quantity * dish.price}
+                        ${parseFloat(dish.quantity * dish.price).toFixed(2)}
                       </span>
                     </p>
                   </div>
@@ -60,11 +64,33 @@ function Cart() {
           })}
 
           {dishes.length > 0 ? (
-            <div className="min-w-full bg-yellow-400 md:py-4 py-2 md:my-2 pl-2 mt-5">
-              <p>
-                <span className="text-white font-semibold">Total:</span>{" "}
-                <span className="text-red-700 font-semibold">${total}</span>
-              </p>
+            <div>
+              <div className="min-w-full bg-yellow-400 md:py-4 py-2 md:my-2 pl-2 mt-5 text-xl">
+                <p>
+                  <span className="text-white font-semibold">Total:</span>{" "}
+                  <span className="text-red-700 font-semibold">
+                    ${total.toFixed(2)}
+                  </span>
+                </p>
+              </div>
+              <div className="flex justify-between mt-10 mb-16">
+                <div className="md:ml-20 ml-8">
+                  <Link to={!currentUser ? "/login" : "/address"}>
+                    <button className="bg-yellow-500 md:px-5 px-2 py-3 md:text-2xl hover:bg-yellow-600 rounded-xl text-white">
+                      Place Order
+                    </button>
+                  </Link>
+                </div>
+
+                <div className="md:mr-20 mr-8">
+                  <button
+                    className="bg-yellow-500 md:px-7 px-3 py-3 md:text-2xl hover:bg-yellow-600 rounded-xl text-white"
+                    onClick={() => dispatch(clearCart())}
+                  >
+                    Clear Cart
+                  </button>
+                </div>
+              </div>
             </div>
           ) : (
             <div className="flex w-full h-screen justify-center">

@@ -22,6 +22,9 @@ const DishDetails = (props) => {
 
   const handleDecrement = () => {
     setDishes(value - 1);
+    if (value > 1) {
+      console.log("delete this");
+    }
   };
 
   const handleIncrement = () => {
@@ -40,8 +43,8 @@ const DishDetails = (props) => {
     }
   };
   return (
-    <div className="px-3">
-      <div className="md:flex">
+    <div className="px-3 min-h-screen w-full">
+      <div className="md:flex ">
         {dish.map((d) => {
           return (
             <div
@@ -55,7 +58,7 @@ const DishDetails = (props) => {
                 />
               </div>
 
-              <div className="m-4 text-center pt-10 ">
+              <div className="m-4 text-center pt-10 w-full">
                 <span className="font-bold">{d.title}</span>
                 <span className="block text-red-500 font-bold">${d.price}</span>
                 <p>{d.description}</p>
@@ -65,21 +68,7 @@ const DishDetails = (props) => {
             </div>
           );
         })}
-        <div className="pl-32 flex md:items-center md:ml-20">
-          <Counter
-            onIncrement={handleIncrement}
-            dishCount={inCart}
-            onDecrement={handleDecrement}
-          />
-        </div>
       </div>
-
-      <div className="bg-yellow-200 py-5 mt-10">
-        <p className="font-bold text-xl text-gray-700 pl-3">
-          Total Price: <span className="text-yellow-700">${price * value}</span>
-        </p>
-      </div>
-      <OrderButton type="Place Order" onOrder={handleAddOrder} />
     </div>
   );
 };
