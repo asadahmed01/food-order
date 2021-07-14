@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { toast } from "react-toastify";
 import { getAllImages } from "../common/data";
 import { Context } from "../context";
-import Counter from "./counter";
+// import Counter from "./counter";
 
-import OrderButton from "./orderButton";
+// import OrderButton from "./orderButton";
 
 const DishDetails = (props) => {
   const { count } = useContext(Context);
@@ -42,6 +42,9 @@ const DishDetails = (props) => {
       });
     }
   };
+
+  const theId = props.match.params.id;
+  console.log(theId);
   return (
     <div className="px-3 min-h-screen w-full">
       <div className="md:flex ">

@@ -15,6 +15,23 @@ function Cart() {
   );
   const currentUser = getCurrentUser();
   console.log(currentUser);
+
+  //determine which page to show user depending if they are registered and/or have
+  //updated address in the file
+  const nextPage = () => {
+    if (!currentUser) {
+      return "/login";
+    }
+    if (currentUser && !currentUser.address) {
+      return "/address";
+    }
+    return "/summary";
+  };
+
+  const saveToLocalStorage = () => {
+    localStorage.setItem("cartItems", JSON.stringify(dishes));
+    console.log("saved to local");
+  };
   return (
     <div className="min-h-screen">
       <React.Fragment>
@@ -75,8 +92,11 @@ function Cart() {
               </div>
               <div className="flex justify-between mt-10 mb-16">
                 <div className="md:ml-20 ml-8">
-                  <Link to={!currentUser ? "/login" : "/address"}>
-                    <button className="bg-yellow-500 md:px-5 px-2 py-3 md:text-2xl hover:bg-yellow-600 rounded-xl text-white">
+                  <Link to={nextPage()}>
+                    <button
+                      className="bg-yellow-500 md:px-5 px-2 py-3 md:text-2xl hover:bg-yellow-600 rounded-xl text-white"
+                      onClick={saveToLocalStorage}
+                    >
                       Place Order
                     </button>
                   </Link>

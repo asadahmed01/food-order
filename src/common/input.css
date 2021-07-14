@@ -1,0 +1,35 @@
+div {
+  height: 100%;
+  
+
+}
+label{
+  position: absolute;
+  right: 55%;
+  padding: 0 2px 0 2px;
+  color: gray;
+}
+input {
+  height: 25px;
+  border: 1px solid black;
+}
+input:focus{
+  border: none;
+  outline: 1px solid orange;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  top: 220px;
+  font-size: 14px;
+  color: orange;
+  z-index: 100;
+  background-color: white;
+  color: orange;
+  padding: 0 5px 0 5px;
+}
+
+input:focus, label {
+  transition: all 0.3s ease;
+  padding-top: 2px;
+}

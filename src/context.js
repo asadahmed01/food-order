@@ -9,9 +9,8 @@ export const OrderProvider = (props) => {
   const [dishes, setDishes] = useState(0);
 
   useEffect(async () => {
-    const result = await axios("http://localhost:3900/api/movies");
-
-    console.log(result.data);
+    // const result = await axios("http://localhost:3900/api/movies");
+    // console.log(result.data);
   });
 
   return (

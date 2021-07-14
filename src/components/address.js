@@ -3,6 +3,8 @@ import joi from "joi-browser";
 import Form from "../common/form";
 import * as userServices from "./services/userService";
 import { FaSpinner } from "react-icons/fa";
+import { updateAddress } from "./services/updateAddress";
+import { getCurrentUser } from "./services/authServices";
 
 class Address extends Form {
   state = {
@@ -20,7 +22,24 @@ class Address extends Form {
   };
 
   doSubmit = async () => {
-    console.log("delivery");
+    let user = getCurrentUser();
+    this.setState({ loading: true });
+    try {
+      const response = await updateAddress(this.state.data, user);
+      //
+
+      const { state } = this.props.location;
+      window.location = state ? state.from.pathname : "/cart";
+    } catch (ex) {
+      if (ex.response && ex.response.status == 400) {
+        let errors = { ...this.state.errors };
+        // errors.email = ex.response.data;
+        // errors.password = ex.response.data;
+        errors = ex.response.data;
+        this.setState({ errors });
+      }
+    }
+    this.setState({ loading: false });
   };
 
   render() {
@@ -34,12 +53,15 @@ class Address extends Form {
           {this.renderInput("city", "City")}
           {this.renderInput("postalCode", "postal Code")}
           {this.renderInput("province", "Province")}
-          {this.renderInput("Country", "Country")}
-          {this.state.errors.msg}
+          {this.renderInput("country", "Country")}
+
           {this.state.loading ? (
             <FaSpinner className="animate-spin text-5xl ml-40 mt-20 text-yellow-400" />
           ) : (
             this.renderButton("Save Address")
+          )}
+          {this.state.errors && (
+            <div className="text-yellow-600">{this.state.errors.msg}</div>
           )}
         </form>
       </div>

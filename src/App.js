@@ -15,7 +15,8 @@ import Footer from "./common/footer";
 import Logout from "./components/logout";
 import Profile from "./components/profile";
 import Address from "./components/address";
-
+import OrderSummary from "./components/orderSummary";
+// import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   return (
     <OrderProvider>
@@ -29,6 +30,7 @@ function App() {
         <Route path="/logout" component={Logout} />
         <Route path="/delete" component={Profile} />
         <Route path="/address" component={Address} />
+        <Route path="/summary" component={OrderSummary} />
         <Route path="/cart" component={Cart} />
         <Route path="/" component={Home} />
       </Switch>
