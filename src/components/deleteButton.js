@@ -5,9 +5,19 @@ import { useDispatch } from "react-redux";
 
 function DeleteButton({ count, id }) {
   const dispatch = useDispatch();
-  console.log(count);
+
+  function deleteFromLocalStorage(id) {
+    const stored = JSON.parse(localStorage.getItem("cartItems") || "[]");
+    const arr = [];
+    stored.map((item) => {
+      if (item.id !== id) arr.push(item);
+      return arr;
+    });
+    localStorage.setItem("cartItems", JSON.stringify(arr));
+    console.log(arr);
+  }
   function handleDelete() {
-    console.log("deleted");
+    deleteFromLocalStorage(id);
     dispatch(removeItem(id));
   }
   return (

@@ -6,18 +6,17 @@ import { useSelector } from "react-redux";
 import { getCurrentUser } from "./services/authServices";
 
 const NavBar = () => {
-  const [user, setUser] = useState("");
+  // const [user, setUser] = useState({});
 
-  useEffect(() => {
-    const user = getCurrentUser();
-    setUser(user);
-  }, []);
+  // useEffect(() => {
+  //   setUser(getCurrentUser());
+  // }, []);
 
   const numberInCart = useSelector((state) => state.products);
 
-  const { count } = useContext(Context);
-  const [dishes] = count;
-  //console.log(dishes);
+  const user = getCurrentUser();
+  console.log(user);
+
   return (
     <nav className="flex-row md:flex  md:justify-between  bg-yellow-500 ">
       <div className="flex  justify-between pl-5 items-center">

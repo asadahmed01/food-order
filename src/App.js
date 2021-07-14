@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,21 +20,23 @@ import OrderSummary from "./components/orderSummary";
 function App() {
   return (
     <OrderProvider>
-      <ToastContainer />
-      <NavBar />
+      <BrowserRouter>
+        <ToastContainer />
+        <NavBar />
 
-      <Switch>
-        <Route path="/dishes/:id" component={DishDetails} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/logout" component={Logout} />
-        <Route path="/delete" component={Profile} />
-        <Route path="/address" component={Address} />
-        <Route path="/summary" component={OrderSummary} />
-        <Route path="/cart" component={Cart} />
-        <Route path="/" component={Home} />
-      </Switch>
-      <Footer />
+        <Switch>
+          <Route path="/dishes/:id" component={DishDetails} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/delete" component={Profile} />
+          <Route path="/address" component={Address} />
+          <Route path="/summary" component={OrderSummary} />
+          <Route path="/cart" component={Cart} />
+          <Route path="/" component={Home} />
+        </Switch>
+        <Footer />
+      </BrowserRouter>
     </OrderProvider>
   );
 }

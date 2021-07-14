@@ -3,7 +3,7 @@ import { act } from "react-dom/test-utils";
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState: [],
+  initialState: JSON.parse(localStorage.getItem("cartItems") || "[]"),
   reducers: {
     // addToCart: (products, action) => {
     //   products.push(action.payload);

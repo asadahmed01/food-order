@@ -8,7 +8,8 @@ import { getCurrentUser } from "./services/authServices";
 
 function Cart() {
   const dispatch = useDispatch();
-  const dishes = useSelector((state) => state.products);
+  let dishes = useSelector((state) => state.products);
+
   const total = dishes.reduce(
     (total, current) => (total += current.price * current.quantity),
     0
@@ -26,6 +27,14 @@ function Cart() {
       return "/address";
     }
     return "/summary";
+  };
+
+  const clearTheCart = () => {
+    localStorage.removeItem("cartItems");
+    dispatch(clearCart());
+  };
+  const getFromLocalStorage = () => {
+    return JSON.parse(localStorage.getItem("cartItems") || "[]");
   };
 
   const saveToLocalStorage = () => {
@@ -105,7 +114,7 @@ function Cart() {
                 <div className="md:mr-20 mr-8">
                   <button
                     className="bg-yellow-500 md:px-7 px-3 py-3 md:text-2xl hover:bg-yellow-600 rounded-xl text-white"
-                    onClick={() => dispatch(clearCart())}
+                    onClick={clearTheCart}
                   >
                     Clear Cart
                   </button>

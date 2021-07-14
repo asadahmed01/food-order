@@ -26,7 +26,10 @@ class login extends Form {
       //
 
       const { state } = this.props.location;
-      window.location = state ? state.from.pathname : "/cart";
+      window.location.href = state ? state.from.pathname : "/cart";
+      //window.history.back();
+      //window.location.href("/cart");
+      //this.props.history.push(state ? state.from.pathname : "/cart");
     } catch (ex) {
       if (ex.response && ex.response.status == 400) {
         let errors = { ...this.state.errors };
@@ -43,7 +46,7 @@ class login extends Form {
   render() {
     return (
       <div className="mt-20 pt-10 min-h-screen flex self-center justify-center">
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <h1 className="font-bold mb-5 text-yellow-800 text-2xl">
             Login Here To Place Your Order
           </h1>

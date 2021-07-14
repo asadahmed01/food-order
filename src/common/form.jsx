@@ -51,6 +51,7 @@ class Form extends Component {
     return (
       <button
         disabled={this.validate()}
+        onClick={this.handleSubmit}
         className="px-8 py-3 bg-blue-600 text-blue-50 md:w-96 w-full shadow-sm hover:shadow-md rounded-md"
       >
         {label}
