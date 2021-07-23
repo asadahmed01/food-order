@@ -1,11 +1,11 @@
-import React, { Fragment, useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { FaBars, FaPepperHot, FaShoppingCart } from "react-icons/fa";
-import { Context } from "../context";
 import { useSelector } from "react-redux";
 import { getCurrentUser } from "./services/authServices";
 
 const NavBar = () => {
+  const [isOpen, setOpen] = useState(false);
   // const [user, setUser] = useState({});
 
   // useEffect(() => {
@@ -18,81 +18,106 @@ const NavBar = () => {
   console.log(user);
 
   return (
-    <nav className="flex-row md:flex  md:justify-between  bg-yellow-500 ">
-      <div className="flex  justify-between pl-5 items-center">
-        <NavLink to="/" className="p-2 text-yellow-100 bg-white rounded-full">
-          <span className="text-red-600 md:text-5xl text-3xl hover:text-green-600">
-            <FaPepperHot />
-          </span>
-        </NavLink>
+    <nav className="flex bg-gray-800 p-1 items-center flex-wrap justify-between  w-full z-10 top-0 sticky">
+      <div className="flex items-center flex-shrink-0 text-white mr-6 ">
         <NavLink
-          className="md:hidden text-gray-50 pr-5"
-          to=""
-          onClick={() => console.log("open")}
+          className="text-red-700 hover:text-yellow-600 no-underline hover:no-underline "
+          to="/"
         >
-          <FaBars />
+          <span className="text-2xl pl-2 font-semibold">
+            <FaPepperHot className="bg-white rounded-full p-2 text-6xl" />
+          </span>
         </NavLink>
       </div>
+      {!isOpen && (
+        <div className="lg:hidden text-white">
+          {numberInCart.length}
+          <FaShoppingCart color="white" size="25" />
+        </div>
+      )}
 
-      <ul className="hidden md:flex md:flex-row text-yellow-50">
-        <li className="p-5">
-          <NavLink to="/" className="p-5 rounded-sm hover:bg-yellow-400">
-            Menu
-          </NavLink>
-        </li>
-        {!user && (
-          <React.Fragment>
-            {" "}
-            <li className="p-5">
-              <NavLink
-                to="/login"
-                className="p-5 rounded-sm hover:bg-yellow-400"
-              >
-                Login
-              </NavLink>
-            </li>
-            <li className="p-5">
-              <NavLink
-                to="/signup"
-                className="p-5 rounded-sm hover:bg-yellow-400"
-              >
-                SignUp
-              </NavLink>
-            </li>
-          </React.Fragment>
-        )}
-
-        {user && (
-          <React.Fragment>
-            <NavLink
-              to="/delete"
-              className="p-5 rounded-sm hover:bg-yellow-400"
-            >
-              {user.name ? user.name : user.email}
-            </NavLink>
-            <NavLink
-              to="/logout"
-              className="p-5 rounded-sm hover:bg-yellow-400"
-            >
-              Logout
-            </NavLink>
-          </React.Fragment>
-        )}
-
-        <li
-          className={`flex-row p-2 relative ${
-            numberInCart.length > 0 ? "" : ""
-          }`}
+      <div className="lg:hidden block">
+        <button
+          className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 "
+          onClick={() => {
+            setOpen(!isOpen);
+          }}
         >
-          <span className="bg-white text-black w-5 h-5 rounded-full px-1 text-xs font-bold">
-            {numberInCart.length}
-          </span>
+          <FaBars />
+        </button>
+      </div>
 
-          <NavLink to="/cart">
-            <FaShoppingCart />
-          </NavLink>
-        </li>
-      </ul>
+      <div
+        className={
+          isOpen
+            ? "w-full flex-grow lg:flex lg:items-center lg:w-auto  pt-6 lg:pt-0"
+            : "hidden w-full flex-grow lg:flex lg:items-center lg:w-auto  pt-6 lg:pt-0"
+        }
+      >
+        <ul className="list-reset lg:flex justify-end flex-1 items-center text-xl">
+          <li className="mr-6">
+            <NavLink
+              to="/"
+              className="inline-block py-2 px-2 text-white no-underline hover:no-underline hover:text-yellow-500"
+            >
+              Menu
+            </NavLink>
+          </li>
+
+          {!user && (
+            <>
+              <li className="mr-6">
+                <NavLink
+                  className="inline-block py-2 px-2 text-white no-underline hover:no-underline hover:text-blue-300"
+                  to="/login"
+                >
+                  Login
+                </NavLink>
+              </li>
+
+              <li className="mr-6">
+                <NavLink
+                  className="inline-block py-2 px-2 text-white no-underline hover:no-underline hover:text-blue-300"
+                  to="/signup"
+                >
+                  Signup
+                </NavLink>
+              </li>
+            </>
+          )}
+
+          {user && (
+            <>
+              <li className="mr-6">
+                <NavLink
+                  className="inline-block py-2 px-2 text-white no-underline hover:no-underline hover:text-blue-300"
+                  to="/delete"
+                >
+                  {user.name ? user.name : user.email}
+                </NavLink>
+              </li>
+
+              <li className="mr-6">
+                <NavLink
+                  className="inline-block py-2 px-2 text-white no-underline hover:no-underline hover:text-blue-300"
+                  to="/logout"
+                >
+                  Logout
+                </NavLink>
+              </li>
+            </>
+          )}
+          <li className="mr-6">
+            <NavLink
+              className="inline-block py-2 px-2 text-white no-underline hover:no-underline hover:text-blue-300 text-2xl"
+              to="/cart"
+            >
+              {numberInCart.length > 0 ? numberInCart.length : "0"}
+              <FaShoppingCart />
+            </NavLink>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 };

@@ -23,7 +23,7 @@ function Cart() {
     if (!currentUser) {
       return "/login";
     }
-    if (currentUser && !currentUser.address) {
+    if (Object.keys(currentUser.address).length === 0) {
       return "/address";
     }
     return "/summary";
@@ -42,7 +42,7 @@ function Cart() {
     console.log("saved to local");
   };
   return (
-    <div className="min-h-screen">
+    <div className="">
       <React.Fragment>
         <div>
           {dishes.map((dish) => {
@@ -91,16 +91,16 @@ function Cart() {
 
           {dishes.length > 0 ? (
             <div>
-              <div className="min-w-full bg-yellow-400 md:py-4 py-2 md:my-2 pl-2 mt-5 text-xl">
+              <div className="min-w-full  md:py-4 py-2 md:my-2 pl-2 mt-5 text-xl">
                 <p>
-                  <span className="text-white font-semibold">Total:</span>{" "}
+                  <span className="text-black font-bold">Total:</span>{" "}
                   <span className="text-red-700 font-semibold">
                     ${total.toFixed(2)}
                   </span>
                 </p>
               </div>
               <div className="flex justify-between mt-10 mb-16">
-                <div className="md:ml-20 ml-8">
+                <div className=" ml-4">
                   <Link to={nextPage()}>
                     <button
                       className="bg-yellow-500 md:px-5 px-2 py-3 md:text-2xl hover:bg-yellow-600 rounded-xl text-white"

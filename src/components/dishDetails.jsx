@@ -47,7 +47,7 @@ const DishDetails = (props) => {
   console.log(theId);
   return (
     <div className="px-3 min-h-screen w-full">
-      <div className="md:flex ">
+      <div className="lg:flex ">
         {dish.map((d) => {
           return (
             <div

@@ -8,7 +8,7 @@ const Counter = (props) => {
       <div className="flex items-center">
         <button
           className="bg-yellow-600 text-white 
-    font-bold py-3 px-4 rounded mt-5 hover:bg-yellow-700"
+    font-bold py-2 px-2 rounded mt-5 hover:bg-yellow-700"
           onClick={props.onIncrement}
         >
           <FaPlus />
@@ -16,7 +16,7 @@ const Counter = (props) => {
 
         <button
           className="bg-gray-200 text-yellow-700 
-    font-bold py-2 px-3 rounded mt-5"
+    font-bold py-1 px-3 rounded mt-5"
         >
           <span className={getBadgeClasses()}>{props.dishCount}</span>
         </button>
@@ -25,7 +25,7 @@ const Counter = (props) => {
         <button
           className={` bg-yellow-600 text-white
     font-bold  rounded mt-5 hover:bg-yellow-700 ${
-      props.dishCount > 1 ? " py-3 px-4 " : "py-3 px-4"
+      props.dishCount > 1 ? " py-2 px-2 " : "py-2 px-2"
     }`}
           disabled={props.dishCount === 0 && true}
           onClick={props.onDecrement}
@@ -48,11 +48,3 @@ function getBadgeClasses() {
   //classes += this.props.counter.value === 0 ? "" : "";
   return classes;
 }
-
-function formatCount() {
-  //const { value } = this.props.counter;
-  //return value === 0 ? "Zero" : value;
-}
-//}
-
-// export default Counter;

@@ -1,69 +1,66 @@
-import React from "react";
-import { FaPepperHot } from "react-icons/fa";
-function OrderSummary(props) {
+import React, { useState } from "react";
+import { getCurrentUser } from "./services/authServices";
+import { updateOrders } from "./services/updateOrders";
+
+const OrderSummary = (props) => {
+  const [data, setData] = useState([]);
+  const [id, setId] = useState("");
+  const items = JSON.parse(localStorage.getItem("cartItems") || "[]");
+  //const orders = localStorage.getItem("cartItems");
+  //console.log(items);
+
+  //console.log(id);
+
+  function submitOrders(e) {
+    const orders = JSON.parse(localStorage.getItem("cartItems") || "[]");
+    //setData(orders);
+    const user = getCurrentUser();
+
+    //e.preventDefault();
+    try {
+      updateOrders(orders, user);
+      //window.location = "/cart";
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <div className="h-full bg-gray-100 text-center">
-      <div className="flex flex-row place-content-center">
-        <h3 className="py-5">Thank You for Dinning with Us.</h3>
-      </div>
+    <div className="md:w-1/2 w-3/4 mx-auto h-screen mt-10">
+      <h1 className="my-5 font-bold text-3xl">Order Summary</h1>
+      <table className="table table-striped table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item, index) => {
+            return (
+              <tr key={index}>
+                <td className="py-3">{item.title}</td>
+                <td>{item.quantity}</td>
+                <td>${item.price * item.quantity}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
 
-      <div className="bg-white m-3.5 h-full">
-        <h1 className="text-3xl pt-10">Order Summary</h1>
-
-        <aside className="h-screen">
-          <header>
-            <p>Your Cart 2 items</p>
-          </header>
-
-          <div>
-            <ul className="mt-40">
-              <li>
-                <a>
-                  <img />
-                </a>
-                <div className="flex flex-wrap justify-between">
-                  <div>
-                    <p>Product Name</p>
-                    <p>Product Description</p>
-                  </div>
-
-                  <p>Price $56.89</p>
-                </div>
-              </li>
-
-              <li>
-                <div className="flex flex-wrap justify-between">
-                  <div>
-                    <p>Product Name</p>
-                    <p>Product Description</p>
-                  </div>
-
-                  <p>Price $56.89</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <footer>
-            <ul className="text-sm flex flex-column gap-xxs">
-              <li className="flex justify-between">
-                <i>Subtotal</i> <i>$98.00</i>
-              </li>
-              <li className="flex justify-between">
-                <i>Tax</i> <i>$10.00</i>
-              </li>
-              <li className="flex justify-between">
-                <i>Delivery</i> <i>Free</i>
-              </li>
-              <li className="flex justify-between font-bold">
-                <i>Total</i> <i>$108.00</i>
-              </li>
-            </ul>
-          </footer>
-        </aside>
+      <div className="flex justify-between mt-20">
+        <p className="font-bold text-lg">Total: $13.50</p>
+        <button
+          type="submit"
+          className="btn btn-warning font-bold text-lg"
+          onClick={submitOrders}
+        >
+          Confirm
+        </button>
       </div>
     </div>
   );
-}
+};
 
 export default OrderSummary;
