@@ -1,7 +1,7 @@
 import React from "react";
 import joi from "joi-browser";
 import Form from "../common/form";
-import * as userServices from "./services/userService";
+
 import { FaSpinner } from "react-icons/fa";
 import { updateAddress } from "./services/updateAddress";
 import { getCurrentUser } from "./services/authServices";

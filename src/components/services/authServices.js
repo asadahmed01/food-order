@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import httpService, { setJwt } from "./httpService";
 //import config from "../config.json";
 
-const apiEndpoint = "http://localhost:5000/login";
+const apiEndpoint = "https://e-foo.herokuapp.com/login";
 
 setJwt(getJwt());
 export async function login(email, password) {

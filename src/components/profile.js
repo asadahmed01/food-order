@@ -1,20 +1,18 @@
 import axios from "axios";
-import formdata from "form-data";
+
 import React, { useEffect, useState } from "react";
-import Card from "./card";
-import CreateProduct from "./createProduct";
+
 import ItemCard from "./ItemCard";
 import { getCurrentUser, logout } from "./services/authServices";
 import { deleteAccount } from "./services/deleteAccount";
 
 function Profile() {
   const [currUser, setCurrUser] = useState({});
-  const [file, setfile] = useState(null);
 
   const person = getCurrentUser();
 
   const userEndpoint = process.env.REACT_APP_ENDPOINT;
-  const productEndpoint = process.env.REACT_APP_PRODUCT;
+  //const productEndpoint = process.env.REACT_APP_PRODUCT;
 
   useEffect(() => {
     userDetails();
@@ -26,7 +24,7 @@ function Profile() {
         id: person.id,
       })
       .then(function (response) {
-        const data = response.data;
+        //const data = response.data;
 
         setCurrUser(response.data);
       })
@@ -35,10 +33,10 @@ function Profile() {
       });
   };
 
-  const handleChange = (e) => {
-    setfile(e.target.files[0]);
-    console.log(e.target.files[0]);
-  };
+  // const handleChange = (e) => {
+  //   setfile(e.target.files[0]);
+  //   console.log(e.target.files[0]);
+  // };
 
   //remove the user account
   const handleRemove = () => {

@@ -25,7 +25,7 @@ class SignUp extends Form {
       window.location = "/login";
       this.setState({ loading: false });
     } catch (ex) {
-      if (ex.response && ex.response.status == 400) {
+      if (ex.response && ex.response.status === 400) {
         let errors = { ...this.state.errors };
         errors = ex.response.data;
         this.setState({ errors });

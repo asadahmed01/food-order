@@ -6,16 +6,10 @@ import { getCurrentUser } from "./services/authServices";
 
 const NavBar = () => {
   const [isOpen, setOpen] = useState(false);
-  // const [user, setUser] = useState({});
-
-  // useEffect(() => {
-  //   setUser(getCurrentUser());
-  // }, []);
 
   const numberInCart = useSelector((state) => state.products);
 
   const user = getCurrentUser();
-  console.log(user);
 
   return (
     <nav className="flex bg-gray-800 p-1 items-center flex-wrap justify-between  w-full z-10 top-0 sticky border-b-4 border-yellow-500">

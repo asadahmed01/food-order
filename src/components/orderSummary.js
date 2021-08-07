@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { getCurrentUser } from "./services/authServices";
 import { updateOrders } from "./services/updateOrders";
 import StripeCheckout from "react-stripe-checkout";

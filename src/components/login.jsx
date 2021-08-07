@@ -31,7 +31,7 @@ class login extends Form {
       //window.location.href("/cart");
       //this.props.history.push(state ? state.from.pathname : "/cart");
     } catch (ex) {
-      if (ex.response && ex.response.status == 400) {
+      if (ex.response && ex.response.status === 400) {
         let errors = { ...this.state.errors };
         // errors.email = ex.response.data;
         // errors.password = ex.response.data;

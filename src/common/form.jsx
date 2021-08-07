@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import joi from "joi-browser";
 import Input from "./input";
-import { FaSpinner } from "react-icons/fa";
 
 class Form extends Component {
   state = { data: {}, errors: {} };

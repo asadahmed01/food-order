@@ -1,6 +1,6 @@
 import httpService from "./httpService";
 
-const apiEndpoint = "http://localhost:5000/register";
+const apiEndpoint = "https://e-foo.herokuapp.com/register";
 export function register(user) {
   return httpService.post(apiEndpoint, {
     email: user.email,
