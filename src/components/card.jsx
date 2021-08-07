@@ -12,12 +12,12 @@ class Card extends Component {
           return (
             <div
               className="bg-white rounded-md overflow-hidden shadow-md hover:shadow-2xl max-w-xs cursor-pointer text-center pb-5"
-              key={item.id}
+              key={item._id}
             >
-              <Link to={`dishes/:${item.id}`} key={item.id}>
+              <Link to={`dishes/${item._id}`} key={item._id}>
                 <div className="border-b border-1 border-gray-100">
                   <img
-                    src={item.url}
+                    src={item.selectedFile}
                     alt="image"
                     className="w-full h-32 sm:h-48 object-cover"
                   />

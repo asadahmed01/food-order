@@ -1,28 +1,33 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaSpinner } from "react-icons/fa";
 import Card from "./card";
-import { Context } from "../context";
+
 import axios from "axios";
 
-const Home = (props) => {
-  const [products, setProducts] = useState([]);
-  const { data } = useContext(Context);
-  const [images, setImages] = data;
+const Home = () => {
+  //const [products, setProducts] = useState([]);
+
+  const [products, setproducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const allproductEndpoint = process.env.REACT_APP_ALLPRODUCT;
   useEffect(() => {
-    const fetchData = async () => {
+    const allProducts = () => {
       setIsLoading(true);
-      const result = await axios("http://localhost:5000/api/products");
-
-      setProducts(result.data);
-      setIsLoading(false);
+      return axios
+        .get(allproductEndpoint)
+        .then(function (response) {
+          setproducts(response.data);
+          setIsLoading(false);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     };
 
-    fetchData();
+    allProducts();
   }, []);
 
-  console.log(products);
   return (
     <div>
       <main className="bg-gray-100 px-16 py-6 min-h-screen">
@@ -32,7 +37,7 @@ const Home = (props) => {
 
         <div>
           <h4 className="font-bold mt-12 pb-2 border-b border-gray-200">
-            Most Popular
+            Our Menu
           </h4>
 
           {isLoading ? (

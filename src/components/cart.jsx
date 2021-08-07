@@ -23,9 +23,9 @@ function Cart() {
     if (!currentUser) {
       return "/login";
     }
-    if (Object.keys(currentUser.address).length === 0) {
-      return "/address";
-    }
+    // if (Object.keys(currentUser.address).length === 0) {
+    //   return "/address";
+    // }
     return "/summary";
   };
 
@@ -39,7 +39,6 @@ function Cart() {
 
   const saveToLocalStorage = () => {
     localStorage.setItem("cartItems", JSON.stringify(dishes));
-    console.log("saved to local");
   };
   return (
     <div className="">
@@ -98,12 +97,13 @@ function Cart() {
                     ${total.toFixed(2)}
                   </span>
                 </p>
+                <hr />
               </div>
               <div className="flex justify-between mt-10 mb-16">
                 <div className=" ml-4">
                   <Link to={nextPage()}>
                     <button
-                      className="bg-yellow-500 md:px-5 px-2 py-3 md:text-2xl hover:bg-yellow-600 rounded-xl text-white"
+                      className="bg-yellow-500 md:px-5 px-2 py-2 md:text-2xl hover:bg-yellow-600 rounded-xl text-white"
                       onClick={saveToLocalStorage}
                     >
                       Place Order
@@ -113,7 +113,7 @@ function Cart() {
 
                 <div className="md:mr-20 mr-8">
                   <button
-                    className="bg-yellow-500 md:px-7 px-3 py-3 md:text-2xl hover:bg-yellow-600 rounded-xl text-white"
+                    className="bg-yellow-500 md:px-7 px-3 py-2 md:text-2xl hover:bg-yellow-600 rounded-xl text-white"
                     onClick={clearTheCart}
                   >
                     Clear Cart

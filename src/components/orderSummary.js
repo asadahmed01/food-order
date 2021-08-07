@@ -1,27 +1,40 @@
 import React, { useState } from "react";
 import { getCurrentUser } from "./services/authServices";
 import { updateOrders } from "./services/updateOrders";
+import StripeCheckout from "react-stripe-checkout";
+import { checkout } from "./services/checkout";
+import { toast } from "react-toastify";
 
 const OrderSummary = (props) => {
-  const [data, setData] = useState([]);
-  const [id, setId] = useState("");
   const items = JSON.parse(localStorage.getItem("cartItems") || "[]");
-  //const orders = localStorage.getItem("cartItems");
-  //console.log(items);
+  const total = items.reduce(
+    (total, current) => (total += current.price * current.quantity),
+    0
+  );
+  const user = getCurrentUser();
 
-  //console.log(id);
-
-  function submitOrders(e) {
+  async function submitOrders() {
     const orders = JSON.parse(localStorage.getItem("cartItems") || "[]");
-    //setData(orders);
+
     const user = getCurrentUser();
 
-    //e.preventDefault();
     try {
-      updateOrders(orders, user);
-      //window.location = "/cart";
-    } catch (error) {
-      console.log(error);
+      const res = await updateOrders(orders, user);
+
+      window.location = "/comfirmation";
+    } catch (error) {}
+  }
+
+  async function handleCheckout(token, addresses) {
+    const response = await checkout(token, items, user.id);
+    const { status, user: usr } = response.data;
+    localStorage.setItem("user", JSON.stringify(usr));
+
+    if (status === "success") {
+      submitOrders();
+      toast("Success! Check email for details", { type: "success" });
+    } else {
+      toast("Something went wrong", { type: "error" });
     }
   }
 
@@ -49,15 +62,17 @@ const OrderSummary = (props) => {
         </tbody>
       </table>
 
-      <div className="flex justify-between mt-20">
-        <p className="font-bold text-lg">Total: $13.50</p>
-        <button
-          type="submit"
-          className="btn btn-warning font-bold text-lg"
-          onClick={submitOrders}
-        >
-          Confirm
-        </button>
+      <div className="flex justify-between mt-20 border-b-2 border-gray-400 pb-5">
+        <p className="font-bold text-lg">Total: ${total}</p>
+
+        <StripeCheckout
+          stripeKey="pk_test_51JGcqTCK6hSW8rlmkkjm7cQkBSEdeceQdhoj0xkPCpuPWrHccciDKDfxFNED6jLQ6zCzTbUiiT6TOXVqLd6s98Rg00DA9gg2yj"
+          amount={total * 100}
+          name={items[0].title + "..."}
+          token={handleCheckout}
+          billingAddress
+          shippingAddress
+        />
       </div>
     </div>
   );

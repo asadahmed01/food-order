@@ -15,7 +15,7 @@ export async function login(email, password) {
 
 export function logout() {
   localStorage.removeItem("token");
-  localStorage.removeItem("cartItems");
+  localStorage.clear();
 }
 
 export function getCurrentUser() {

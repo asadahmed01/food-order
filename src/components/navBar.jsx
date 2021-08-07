@@ -18,8 +18,8 @@ const NavBar = () => {
   console.log(user);
 
   return (
-    <nav className="flex bg-gray-800 p-1 items-center flex-wrap justify-between  w-full z-10 top-0 sticky">
-      <div className="flex items-center flex-shrink-0 text-white mr-6 ">
+    <nav className="flex bg-gray-800 p-1 items-center flex-wrap justify-between  w-full z-10 top-0 sticky border-b-4 border-yellow-500">
+      <div className=" items-center flex-shrink-0 text-white mr-6 hidden">
         <NavLink
           className="text-red-700 hover:text-yellow-600 no-underline hover:no-underline "
           to="/"
@@ -31,10 +31,23 @@ const NavBar = () => {
       </div>
       {!isOpen && (
         <div className="lg:hidden text-white">
-          {numberInCart.length}
-          <FaShoppingCart color="white" size="25" />
+          <NavLink to="/cart" className="focus:no-underline">
+            {numberInCart.length}
+            <FaShoppingCart color="white" size="25" />
+          </NavLink>
         </div>
       )}
+
+      <div className="  text-white mr-6 lg:hidden">
+        <NavLink
+          className="text-red-700 hover:text-yellow-600 no-underline hover:no-underline "
+          to="/"
+        >
+          <span className="text-2xl pl-2 font-semibold">
+            <FaPepperHot className="bg-white rounded-full p-1 text-5xl mb-3" />
+          </span>
+        </NavLink>
+      </div>
 
       <div className="lg:hidden block">
         <button
@@ -107,6 +120,20 @@ const NavBar = () => {
               </li>
             </>
           )}
+
+          {user && user.isAdmin && (
+            <>
+              <li className="mr-6">
+                <NavLink
+                  className="inline-block py-2 px-2 text-white no-underline hover:no-underline hover:text-blue-300"
+                  to="/dashboard"
+                >
+                  Dashboard
+                </NavLink>
+              </li>
+            </>
+          )}
+
           <li className="mr-6">
             <NavLink
               className="inline-block py-2 px-2 text-white no-underline hover:no-underline hover:text-blue-300 text-2xl"
