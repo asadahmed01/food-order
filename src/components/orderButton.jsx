@@ -5,20 +5,20 @@ import configureStore from "../store/configureStore";
 const store = configureStore;
 class OrderButton extends Component {
   render() {
+    const handleAdd = () => {
+      store.dispatch(addToCart(this.props.onOrder));
+
+      toast.success(`${this.props.onOrder.title} added to cart`, {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+      });
+    };
     return (
       <button
         className="bg-yellow-600 text-white 
       font-bold py-2 px-4 rounded mt-5 hover:bg-yellow-700"
-        onClick={() =>
-          store.dispatch(
-            addToCart(this.props.onOrder),
-            toast.success(`${this.props.onOrder.title} added to cart`, {
-              position: "top-center",
-              autoClose: 1500,
-              hideProgressBar: true,
-            })
-          )
-        }
+        onClick={handleAdd}
       >
         {this.props.type}
       </button>

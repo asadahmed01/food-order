@@ -33,7 +33,7 @@ const Counter = (props) => {
           {props.dishCount > 1 ? (
             <FaMinus />
           ) : (
-            <DeleteButton count={props.dishCount} id={props.id} />
+            <DeleteButton count={props.dishCount} _id={props.id} />
           )}
         </button>
       </div>

@@ -15,7 +15,6 @@ function Cart() {
     0
   );
   const currentUser = getCurrentUser();
-  console.log(currentUser);
 
   //determine which page to show user depending if they are registered and/or have
   //updated address in the file
@@ -46,7 +45,7 @@ function Cart() {
         <div>
           {dishes.map((dish) => {
             return (
-              <div key={dish.id}>
+              <div key={dish._id}>
                 <div className="mt-8 grid grid-cols-2 md:gap-8 gap-2">
                   <div className="bg-white rounded-md overflow-hidden shadow-md hover:shadow-2xl max-w-xs cursor-pointer text-center pb-5">
                     <div className="border-t border-1 border-gray-100">
@@ -66,7 +65,7 @@ function Cart() {
                   {/* the total price column */}
                   <div className="flex-col self-end border-b mr-5 text-sm md:text-lg">
                     <Counter
-                      id={dish.id}
+                      id={dish._id}
                       onIncrement={() => {
                         dispatch(incrementItem(dish));
                       }}

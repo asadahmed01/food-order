@@ -9,11 +9,11 @@ const cartSlice = createSlice({
     //   products.push(action.payload);
     // },
     addToCart: (products, action) => {
-      const dish = products.find((item) => item.id === action.payload.id);
-
+      const dish = products.find((item) => item._id === action.payload._id);
+      console.log(products);
       if (dish) {
         return products.map((item) =>
-          item.id === action.payload.id
+          item._id === action.payload._id
             ? {
                 ...item,
                 quantity: item.quantity + 1,
@@ -30,7 +30,7 @@ const cartSlice = createSlice({
 
     incrementItem: (products, action) => {
       return products.map((item) =>
-        item.id === action.payload.id
+        item._id === action.payload._id
           ? { ...item, quantity: item.quantity + 1 }
           : item
       );
@@ -38,14 +38,14 @@ const cartSlice = createSlice({
 
     decrementItem: (products, action) => {
       return (products = products.map((item) =>
-        item.id === action.payload.id
+        item._id === action.payload._id
           ? { ...item, quantity: item.quantity - 1 }
           : item
       ));
     },
 
     removeItem: (products, action) => {
-      return products.filter((item) => item.id !== action.payload);
+      return products.filter((item) => item._id !== action.payload);
     },
 
     clearCart: () => [],

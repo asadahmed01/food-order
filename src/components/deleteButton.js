@@ -3,22 +3,22 @@ import { FaTrash } from "react-icons/fa";
 import { removeItem } from "../store/cartSlice";
 import { useDispatch } from "react-redux";
 
-function DeleteButton({ count, id }) {
+function DeleteButton({ count, _id }) {
   const dispatch = useDispatch();
 
-  function deleteFromLocalStorage(id) {
+  function deleteFromLocalStorage(_id) {
     const stored = JSON.parse(localStorage.getItem("cartItems") || "[]");
     const arr = [];
     stored.map((item) => {
-      if (item.id !== id) arr.push(item);
+      if (item._id !== _id) arr.push(item);
       return arr;
     });
     localStorage.setItem("cartItems", JSON.stringify(arr));
     console.log(arr);
   }
   function handleDelete() {
-    deleteFromLocalStorage(id);
-    dispatch(removeItem(id));
+    deleteFromLocalStorage(_id);
+    dispatch(removeItem(_id));
   }
   return (
     <div>
