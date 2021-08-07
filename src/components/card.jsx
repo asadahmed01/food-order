@@ -19,9 +19,9 @@ class Card extends Component {
                   <img
                     src={item.selectedFile}
                     alt="image"
-                    className="w-full h-32 sm:h-48 object-cover"
+                    className="w-full object-cover h-60 md:h-56"
                   />
-                  <div className="m-4 text-center pt-10 ">
+                  <div className="m-4 text-center pt-2 ">
                     <span className="font-bold">{item.title}</span>
                     <span className="block text-red-500">${item.price}</span>
                   </div>
