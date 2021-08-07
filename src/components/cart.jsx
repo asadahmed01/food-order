@@ -51,7 +51,7 @@ function Cart() {
                   <div className="bg-white rounded-md overflow-hidden shadow-md hover:shadow-2xl max-w-xs cursor-pointer text-center pb-5">
                     <div className="border-t border-1 border-gray-100">
                       <img
-                        src={dish.url}
+                        src={dish.selectedFile}
                         alt="image"
                         className="w-full h-32 sm:h-48 object-cover"
                       />

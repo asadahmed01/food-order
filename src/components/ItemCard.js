@@ -7,7 +7,11 @@ const ItemCard = (props) => {
         <div className="card" key={order._id}>
           <div className="card-body">
             <div className="bg-transparent text-left">
-              <img src={order.url} alt="dish image" className="w-24 h-22" />
+              <img
+                src={order.selectedFile}
+                alt="dish image"
+                className="w-24 h-22"
+              />
             </div>
 
             <h5 className="card-title font-bold">Title: {order.title}</h5>
