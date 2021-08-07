@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { getCurrentUser } from "./services/authServices";
 
 const Comfirmation = () => {
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
 
-  useEffect(() => {
-    const user = getCurrentUser();
-    setUser(user);
-  }, []);
+  // useEffect(() => {
+  //   const user = getCurrentUser();
+  //   setUser(user);
+  // }, []);
+  // const user = getCurrentUser();
   const { address } = JSON.parse(localStorage.getItem("user") || "[]");
   let orders = JSON.parse(localStorage.getItem("cartItems") || "[]");
   const total = orders.reduce(
